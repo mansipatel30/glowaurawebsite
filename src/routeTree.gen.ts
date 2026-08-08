@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as OffersRouteImport } from './routes/offers'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as VanguardRouteImport } from './routes/vanguard'
 import { Route as WishlistRouteImport } from './routes/wishlist'
@@ -32,6 +33,11 @@ const CartRoute = CartRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OffersRoute = OffersRouteImport.update({
+  id: '/offers',
+  path: '/offers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/offers': typeof OffersRoute
   '/shop': typeof ShopRoute
   '/vanguard': typeof VanguardRoute
   '/wishlist': typeof WishlistRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/offers': typeof OffersRoute
   '/shop': typeof ShopRoute
   '/vanguard': typeof VanguardRoute
   '/wishlist': typeof WishlistRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/offers': typeof OffersRoute
   '/shop': typeof ShopRoute
   '/vanguard': typeof VanguardRoute
   '/wishlist': typeof WishlistRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/checkout'
+    | '/offers'
     | '/shop'
     | '/vanguard'
     | '/wishlist'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/checkout'
+    | '/offers'
     | '/shop'
     | '/vanguard'
     | '/wishlist'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/checkout'
+    | '/offers'
     | '/shop'
     | '/vanguard'
     | '/wishlist'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
+  OffersRoute: typeof OffersRoute
   ShopRoute: typeof ShopRoute
   VanguardRoute: typeof VanguardRoute
   WishlistRoute: typeof WishlistRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offers': {
+      id: '/offers'
+      path: '/offers'
+      fullPath: '/offers'
+      preLoaderRoute: typeof OffersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
+  OffersRoute: OffersRoute,
   ShopRoute: ShopRoute,
   VanguardRoute: VanguardRoute,
   WishlistRoute: WishlistRoute,
