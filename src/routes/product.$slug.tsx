@@ -247,7 +247,7 @@ function ProductPage() {
                 <AccordionTrigger>Key Benefits</AccordionTrigger>
                 <AccordionContent>
                   <ul className="space-y-2">
-                    {product.benefits.map((b) => (
+                    {product.benefits.map((b: string) => (
                       <li key={b} className="flex gap-2">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                         {b}
