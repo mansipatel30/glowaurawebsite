@@ -262,5 +262,3 @@ function CheckRow({
     </div>
   );
 }
-
-export { products };
