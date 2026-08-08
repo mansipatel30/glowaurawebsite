@@ -19,6 +19,9 @@
  */
 
 @theme inline {
+  --font-podium: "FSP DEMO - PODIUM Sharp 4.11", "Inter", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
