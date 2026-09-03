@@ -172,7 +172,7 @@ export const products: Product[] = seeds.map((s, i) => ({
   keywords: s.k,
   ...(s.best ? { bestSeller: true } : {}),
   ...(s.fresh ? { newArrival: true } : {}),
-  image: categoryImage[s.c],
+  image: productImages[slugify(s.n)] ?? categoryImage[s.c],
 }));
 
 export const brands = Array.from(new Set(products.map((p) => p.brand))).sort();
