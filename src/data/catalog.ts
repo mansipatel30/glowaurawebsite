@@ -43,6 +43,20 @@ export const categoryImage: Record<CategorySlug, string> = {
   "gift-sets": catGifts,
 };
 
+const productImageModules = import.meta.glob("../assets/products/*.jpg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+}) as Record<string, string>;
+
+const productImages: Record<string, string> = Object.fromEntries(
+  Object.entries(productImageModules).map(([path, url]) => [
+    path.split("/").pop()!.replace(/\.jpg$/, ""),
+    url,
+  ]),
+);
+
+
 export interface Product {
   id: string;
   slug: string;
@@ -158,7 +172,7 @@ export const products: Product[] = seeds.map((s, i) => ({
   keywords: s.k,
   ...(s.best ? { bestSeller: true } : {}),
   ...(s.fresh ? { newArrival: true } : {}),
-  image: categoryImage[s.c],
+  image: productImages[slugify(s.n)] ?? categoryImage[s.c],
 }));
 
 export const brands = Array.from(new Set(products.map((p) => p.brand))).sort();
